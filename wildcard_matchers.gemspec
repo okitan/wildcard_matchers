@@ -1,6 +1,4 @@
 # -*- encoding: utf-8 -*-
-require File.expand_path('../lib/wildcard_matchers/version', __FILE__)
-
 Gem::Specification.new do |gem|
   gem.authors       = ["okitan"]
   gem.email         = ["okitakunio@gmail.com"]
@@ -17,4 +15,9 @@ Gem::Specification.new do |gem|
   gem.version       = File.read(File.join(File.dirname(__FILE__), "VERSION")).chomp
 
   gem.add_development_dependency "rake"
+  gem.add_development_dependency "rspec"
+  gem.add_development_dependency "autowatchr"
+
+  # for debug
+  gem.add_development_dependency "pry"
 end
