@@ -11,5 +11,9 @@ module WildcardMatchers
         end
       }
     end
+
+    def is_bool
+      lambda {|bool| TrueClass === bool or FalseClass === bool }
+    end
   end
 end
