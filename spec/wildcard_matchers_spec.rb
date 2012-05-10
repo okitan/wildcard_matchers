@@ -9,6 +9,7 @@ describe target do
     [ [ "string",            String ],
       [ "string",            /^str/ ],
       [ 0,                   Integer ],
+      [ 2,                   (1..3) ],
       [ 0.1,                 Float ],
       [ 0,                   Numeric ],  # superclass
       [ { :some => :hash },  Hash  ],

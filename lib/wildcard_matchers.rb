@@ -9,8 +9,6 @@ module WildcardMatchers
     case expected
     when Class
       # when expected is really Array or Hash comes here and do nothing
-    when Proc
-      # TODO:
     when Array
       return check_array(actual, expected, &on_failure)
     when Hash
