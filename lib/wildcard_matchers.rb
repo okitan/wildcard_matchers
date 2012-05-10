@@ -35,7 +35,7 @@ module WildcardMatchers
 
     if expected.size == actual.size
       actual.zip(expected).inject(true) do |result, (a, e)|
-        result && wildcard_match?(a, e, &on_failure)
+        result & wildcard_match?(a, e, &on_failure)
       end
     else
       yield <<_MESSAGE_
@@ -52,7 +52,7 @@ _MESSAGE_
 
     if expected.keys.size == (actual.keys & expected.keys).size
       expected.inject(true) do |result, (key, value)|
-        result && wildcard_match?(actual[key], value, &on_failure)
+        result & wildcard_match?(actual[key], value, &on_failure)
       end
     else
       yield <<_MESSAGE_

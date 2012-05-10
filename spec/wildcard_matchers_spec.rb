@@ -14,14 +14,14 @@ describe target do
       [ { :some => :hash },  Hash  ],
       [ [ 1, 2, 3 ],         Array ],
     ].each do |actual, expected|
-      it_should_behave_like :wildcard_match_matches, actual, expected
+      it_should_behave_like :wildcard_matcher_matches, actual, expected
     end
 
     context "matches recursively in Array" do
       [ [ [ 1, 2, "3"],    [ Integer, Integer, String ] ],
         [ [ 1, 2, [ 1 ] ], [ Integer, Integer, [ Integer ] ] ],
       ].each do |actual, expected|
-        it_should_behave_like :wildcard_match_matches, actual, expected
+        it_should_behave_like :wildcard_matcher_matches, actual, expected
       end
     end
 
@@ -30,7 +30,7 @@ describe target do
         [ [ 1, 2, 3 ],    [ Integer, String,  Integer ] ],
         [ [ 1, 2, [ 1 ] ], [ Integer, Integer, [ String ] ] ],
       ].each do |actual, expected|
-        it_should_behave_like :wildcard_match_not_matches, actual, expected
+        it_should_behave_like :wildcard_matcher_not_matches, actual, expected
       end
     end
 
@@ -38,7 +38,7 @@ describe target do
       [ [ { :hoge => "fuga", :fuga => "ugu" }, { :hoge => String, :fuga => String } ],
         [ { :hoge => "fuga", :fuga => { :ugu => "piyo" } }, { :hoge => String, :fuga => { :ugu => String } } ],
       ].each do |actual, expected|
-        it_should_behave_like :wildcard_match_matches, actual, expected
+        it_should_behave_like :wildcard_matcher_matches, actual, expected
       end
     end
 
@@ -48,7 +48,7 @@ describe target do
         [ { :hoge => "fuga", :fuga => { :ugu => "piyo" } }, { :hoge => String, :fuga => { :ugu => Integer } } ],
         [ { :hoge => "fuga", :fuga => { :ugu => "piyo" } }, { :hoge => String, :fuga => { :fuga => String } } ],
       ].each do |actual, expected|
-        it_should_behave_like :wildcard_match_not_matches, actual, expected
+        it_should_behave_like :wildcard_matcher_not_matches, actual, expected
       end
     end
 
@@ -61,29 +61,34 @@ describe target do
           { :first => Integer, :second => [ Integer ], :third => { :one => Integer } }
         ]
       ].each do |actual, expected|
-        it_should_behave_like :wildcard_match_matches, actual, expected
+        it_should_behave_like :wildcard_matcher_matches, actual, expected
       end
     end
   end
 
   context ".wildcard_matches with on_failure callback" do
-    context "without callback" do
-      it "returns false" do
-        wildcard_match?(true, false).should be_false
-      end
+    it "can get failure message" do
+      actual   = true
+      expected = false
+
+      failure = nil
+      wildcard_match?(actual, expected) {|message| failure = message }
+      failure.should =~ /#{actual.inspect} .+ #{expected.inspect}/
     end
 
-    context "with callback" do
-      [ [ true, false ],
-      ].each do |actual, expected|
-        it "can get failure message" do
-          failure = nil
-          wildcard_match?(actual, expected) {|message| failure = message }
-          failure.should =~ /#{actual.inspect} .+ #{expected.inspect}/
-        end
-      end
+    it "can get several failure messages" do
+      actual   = [ 1, 0, 2 ]
+      expected = [ 3, 0, 4 ]
 
-      # TODO: more failure message
+      failures = []
+      wildcard_match?(actual, expected) {|message| failures << message }
+
+      # TODO: dog fooding of rspec-matcher
+      expect_failures = [ /#{actual.first}.+#{expected.first}/,
+                          /#{actual.last}.+#{expected.last}/ ]
+      wildcard_match?(failures, expect_failures, &$debug).should be_true
     end
+
+    # TODO: more failure message
   end
 end
