@@ -16,12 +16,12 @@ shared_examples_for :wildcard_match_not_matches do |actual, expected|
   end
 end
 
-
 describe target do
   include target
 
   context ".wildcard_match?" do
     [ [ "string",            String ],
+      [ "string",            /^str/ ],
       [ 0,                   Integer ],
       [ 0.1,                 Float ],
       [ 0,                   Numeric ],  # superclass
@@ -67,6 +67,17 @@ describe target do
     end
 
     # TODO: more complex example array in hash and hash in array
+    context "match recursively Array and Hash" do
+      [ [ [ 1, [ 2 ], { :first => 4, :second => [ 5, 6 ] } ],
+          [ Integer, [ Integer ], { :first => Integer, :second => [ Integer, Integer ] } ] ],
+
+        [ { :first => 1, :second => [ 2 ], :third => { :one => 3 } },
+          { :first => Integer, :second => [ Integer ], :third => { :one => Integer } }
+        ]
+      ].each do |actual, expected|
+        it_should_behave_like :wildcard_match_matches, actual, expected
+      end
+    end
   end
 
   context ".wildcard_matches with on_failure callback" do
