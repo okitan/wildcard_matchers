@@ -10,7 +10,7 @@ describe WildcardMatchers::Matchers do
     [ { :some => :hash },  Hash  ],
     [ [ 1, 2, 3 ],         Array ],
   ].each do |actual, expected|
-    it_should_behave_like "wildcard match with args", actual, :is_a, expected
+    it_should_behave_like "wildcard match", actual, :is_a, expected
   end
 
   [ [ "string",           :is_a_string ],
@@ -32,17 +32,22 @@ describe WildcardMatchers::Matchers do
     it_should_behave_like "wildcard match", actual, matcher
   end
 
+  [ [ 0, :is_bool ],
+  ].each do |actual, matcher|
+    it_should_behave_like "not wildcard match", actual, matcher
+  end
+
   [ [ { :a => 1, :b => 1, :c => 1 }, :hash_includes, :a, :b ],
     [ { :a => 1, :b => 1, :c => 1 }, :hash_includes, :a, :b => 1 ],
     [ { :a => 1, :b => 1, :c => 1 }, :hash_includes, :a, :b => Integer ],
   ].each do |actual, matcher, *args|
-    it_should_behave_like "wildcard match with args", actual, matcher, *args
+    it_should_behave_like "wildcard match", actual, matcher, *args
   end
 
   [ [ { :a => 1, :b => 1, :c => 1 }, :hash_includes, :a, :d ],
     [ { :a => 1, :b => 1, :c => 1 }, :hash_includes, :a, :b => 2 ],
     [ { :a => 1, :b => 1, :c => 1 }, :hash_includes, :a, :b => String ],
   ].each do |actual, matcher, *args|
-    it_should_behave_like "not wildcard match with args", actual, matcher, *args
+    it_should_behave_like "not wildcard match", actual, matcher, *args
   end
 end

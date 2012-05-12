@@ -19,7 +19,7 @@ module WildcardMatchers
     def is_time
       lambda do |time|
         require "time"
-        time.is_a?(Time) or (Time.parse(time) rescue nil)
+        time.is_a?(Time) or (Time.parse(time) rescue false)
       end
     end
 
