@@ -1,4 +1,4 @@
-# wildcard_matchers
+# wildcard_matchers [![Build Status](https://secure.travis-ci.org/okitan/wildcard_matchers.png?branch=master)](http://travis-ci.org/okitan/wildcard_matchers)
 
 ## General Usage
 
