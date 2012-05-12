@@ -6,38 +6,37 @@ module WildcardMatchers
   def wildcard_match?(actual, expected, &on_failure)
     on_failure = proc { return false } unless block_given?
 
+    recursive_match(actual, expected, &on_failure)
+  end
+
+  protected
+  def recursive_match(actual, expected, position = ".", &on_failure)
     case expected
     when Class
       # when expected is really Array or Hash comes here and do nothing
     when Array
-      return check_array(actual, expected, &on_failure)
+      return check_array(actual, expected, position, &on_failure)
     when Hash
-      return check_hash(actual, expected, &on_failure)
+      return check_hash(actual, expected, position, &on_failure)
     end
 
-    single_match(actual, expected, &on_failure)
-  end
-
-  protected
-  def single_match(actual, expected, &callback)
     unless expected === actual
-      yield("expect #{actual.inspect} to #{expected.inspect}")
+      yield("#{position}: expect #{actual.inspect} to #{expected.inspect}")
       false
     else
       true
     end
   end
 
-  def check_array(actual, expected, &on_failure)
-    return false unless single_match(actual, Array, &on_failure)
-
+  # TODO: class ArrayMatcher ?
+  def check_array(actual, expected, position, &on_failure)
     if expected.size == actual.size
-      actual.zip(expected).inject(true) do |result, (a, e)|
-        result & wildcard_match?(a, e, &on_failure)
-      end
+      actual.zip(expected).map.with_index do |(a, e), index|
+        recursive_match(a, e, position + "[#{index}]", &on_failure)
+      end.all?
     else
       yield <<_MESSAGE_
-expect Array size #{actual.size} to #{expected.size}"
+#{position}: expect Array size #{actual.size} to #{expected.size}
   actual: #{actual.inspect}
   expect: #{expected.inspect}
 _MESSAGE_
@@ -45,16 +44,15 @@ _MESSAGE_
     end
   end
 
-  def check_hash(actual, expected, &on_failure)
-    return false unless single_match(actual, Hash, &on_failure)
-
+  # TODO: class HashMatcher ?
+  def check_hash(actual, expected, position, &on_failure)
     if expected.keys.size == (actual.keys & expected.keys).size
-      expected.inject(true) do |result, (key, value)|
-        result & wildcard_match?(actual[key], value, &on_failure)
-      end
+      expected.map do |key, value|
+        recursive_match(actual[key], value, position + "[#{key.inspect}]", &on_failure)
+      end.all?
     else
       yield <<_MESSAGE_
-expect Hash keys #{actual.size} to #{expected.size}"
+#{position}: expect Hash keys #{actual.size} to #{expected.size}
   +keys: #{actual.keys   - expected.keys}
   -keys: #{expected.keys - actual.keys }
 _MESSAGE_
