@@ -14,3 +14,15 @@ shared_examples_for "not wildcard match" do |actual, expected|
     wildcard_match?(actual, expected).should be_false
   end
 end
+
+shared_examples_for "wildcard match with args" do |actual, matcher, *args|
+  it "match #{actual.inspect} with #{matcher.inspect}(#{args.map(&:inspect).join(", ")})" do
+    wildcard_match?(actual, send(matcher, *args)).should be_true
+  end
+end
+
+shared_examples_for "not wildcard match with args" do |actual, matcher, *args|
+  it "not match #{actual.inspect} with #{matcher.inspect}(#{args.map(&:inspect).join(", ")})" do
+    wildcard_match?(actual, send(matcher, *args)).should be_false
+  end
+end

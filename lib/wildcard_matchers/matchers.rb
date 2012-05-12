@@ -23,8 +23,15 @@ module WildcardMatchers
       end
     end
 
-    def hash_including(*args)
-      lambda {|hash| (args - hash.keys).size > 0 }
+    # RSpeck::Mocks has hash_including
+    def hash_includes(*args)
+      hash_to_match = {}
+      hash_to_match = args.pop if args.last.is_a?(Hash)
+
+      lambda do |hash|
+        (args - hash.keys).size == 0 &&
+          hash_to_match.all? {|key, value| value === hash[key] }
+      end
     end
   end
 end

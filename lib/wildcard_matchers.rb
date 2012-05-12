@@ -11,9 +11,11 @@ module WildcardMatchers
 
   protected
   def recursive_match(actual, expected, position = ".", &on_failure)
+    # "case expected" should omit Array or Hash
+    # "case actual" should omit Proc
     case expected
     when Class
-      # when expected is really Array or Hash comes here and do nothing
+      # when expected is Array or Hash (Class) comes here and do nothing
     when Array
       return check_array(actual, expected, position, &on_failure)
     when Hash
@@ -46,7 +48,7 @@ _MESSAGE_
 
   # TODO: class HashMatcher ?
   def check_hash(actual, expected, position, &on_failure)
-    if expected.keys.size == (actual.keys & expected.keys).size
+    if (actual.keys - expected.keys).size == 0 && (expected.keys - actual.keys).size == 0
       expected.map do |key, value|
         recursive_match(actual[key], value, position + "[#{key.inspect}]", &on_failure)
       end.all?
@@ -59,4 +61,6 @@ _MESSAGE_
       false
     end
   end
+
+  module_function *self.instance_methods
 end

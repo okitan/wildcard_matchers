@@ -1,5 +1,6 @@
 $: << File.expand_path('../lib', File.dirname(__FILE__))
 require 'wildcard_matchers'
+require "wildcard_matchers/rspec"
 
 Dir[File.expand_path("support/**/*.rb", File.dirname(__FILE__))].each {|f| require f }
 

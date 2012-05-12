@@ -44,7 +44,8 @@ describe target do
     end
 
     context "matches recursively in Hash" do
-      [ [ { :hoge => "fuga", :fuga => "ugu" }, { :hoge => String, :fuga => Integer } ],
+      [ [ { :hoge => "fuga" },                 {} ],
+        [ { :hoge => "fuga", :fuga => "ugu" }, { :hoge => String, :fuga => Integer } ],
         [ { :hoge => "fuga", :fuga => "ugu" }, { :hoge => String, :ugu => String } ],
         [ { :hoge => "fuga", :fuga => { :ugu => "piyo" } }, { :hoge => String, :fuga => { :ugu => Integer } } ],
         [ { :hoge => "fuga", :fuga => { :ugu => "piyo" } }, { :hoge => String, :fuga => { :fuga => String } } ],
