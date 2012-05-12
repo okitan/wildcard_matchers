@@ -2,9 +2,9 @@
 Gem::Specification.new do |gem|
   gem.authors       = ["okitan"]
   gem.email         = ["okitakunio@gmail.com"]
-  gem.description   = "ambiguous matching enabled"
-  gem.summary       = "ambiguous matching enabled"
-  gem.homepage      = ""
+  gem.description   = "wildcard matchers"
+  gem.summary       = "wildcard matchers which can use in rspec"
+  gem.homepage      = "https://github.com/okitan/wildcard_matchers"
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
