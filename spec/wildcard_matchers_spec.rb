@@ -18,6 +18,12 @@ describe target do
       it_should_behave_like "wildcard match", actual, expected
     end
 
+    [ [ {}, [] ],
+      [ [], {} ],
+    ].each do |actual, expected|
+      it_should_behave_like "not wildcard match", actual, expected
+    end
+
     context "matches recursively in Array" do
       [ [ [ 1, 2, "3"],    [ Integer, Integer, String ] ],
         [ [ 1, 2, [ 1 ] ], [ Integer, Integer, [ Integer ] ] ],

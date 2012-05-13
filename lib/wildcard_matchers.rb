@@ -32,6 +32,8 @@ module WildcardMatchers
 
   # TODO: class ArrayMatcher ?
   def check_array(actual, expected, position, &on_failure)
+    return false unless actual.is_a?(Array)
+
     if expected.size == actual.size
       actual.zip(expected).map.with_index do |(a, e), index|
         recursive_match(a, e, position + "[#{index}]", &on_failure)
@@ -48,6 +50,8 @@ _MESSAGE_
 
   # TODO: class HashMatcher ?
   def check_hash(actual, expected, position, &on_failure)
+    return false unless actual.is_a?(Hash)
+
     if (actual.keys - expected.keys).size == 0 && (expected.keys - actual.keys).size == 0
       expected.map do |key, value|
         recursive_match(actual[key], value, position + "[#{key.inspect}]", &on_failure)
