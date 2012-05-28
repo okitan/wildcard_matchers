@@ -1,6 +1,8 @@
+require "wildcard_matchers/helpers"
 require "wildcard_matchers/matchers"
 
 module WildcardMatchers
+  include Helpers
   include Matchers
 
   def wildcard_match?(actual, expected, &on_failure)

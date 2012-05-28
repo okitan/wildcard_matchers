@@ -23,3 +23,18 @@ shared_examples_for "not wildcard match" do |actual, matcher, *args|
     end
   end
 end
+
+shared_examples_for "wildcard match with helper" do |actual, helper, matcher, *args|
+  expected = helper.inspect + (args.size > 0 ?
+                                "(#{matcher.inspect}(#{args.map(&:inpect).join(",")})" :
+                                matcher.inspect)
+
+  it "#{actual.inspect} with #{expected}" do
+    if matcher.is_a?(Symbol) and WildcardMatchers.respond_to?(matcher)
+      # Note: some symbol comes here and may fail
+      wildcard_match?(actual, send(helper, send(matcher, *args))).should be_true
+    else
+      wildcard_match?(actual, send(helper, matcher)).should be_true
+    end
+  end
+end

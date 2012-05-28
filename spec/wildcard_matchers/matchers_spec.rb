@@ -1,8 +1,6 @@
 require "spec_helper"
 
 describe WildcardMatchers::Matchers do
-  include WildcardMatchers
-
   [ [ "string",            String ],
     [ 0,                   Integer ],
     [ 0.1,                 Float ],
