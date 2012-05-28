@@ -33,6 +33,8 @@ See specs, for more detail.
  * hash_includes(:b) === { :a => 1 } #=> false
  * hash_includes(:a => Integer) === { :a => 1 } #=> true
  * hash_includes(:a => 2) === { :a => 1 } #=> false
+* is_a_member_of
+ * is_a_member_of(0, 1) === 0 #=> true
 
 ## How it works
 

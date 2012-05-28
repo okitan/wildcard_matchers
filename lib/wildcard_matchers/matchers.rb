@@ -33,5 +33,11 @@ module WildcardMatchers
           hash_to_match.all? {|key, value| value === hash[key] }
       end
     end
+
+    def is_a_member_of(*args)
+      lambda do |item|
+        args.flatten.any? {|expected| expected === item }
+      end
+    end
   end
 end

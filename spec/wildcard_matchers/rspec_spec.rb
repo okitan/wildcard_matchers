@@ -1,10 +1,17 @@
 require "spec_helper"
 
 describe "matcher wildcard_match" do
-  [ [ 1, Integer ]
+  [ [ 1, Integer ],
   ].each do |actual, expected|
-    it "match #{actual} with #{expected}" do
+    it "match #{actual.inspect} with #{expected}" do
       actual.should wildcard_match(expected)
+    end
+  end
+
+  [ [ "1", :is_a_string ],
+  ].each do |actual, expected|
+    it "match #{actual.inspect} with #{expected}" do
+      actual.should wildcard_match(send(expected))
     end
   end
 
@@ -15,7 +22,7 @@ describe "matcher wildcard_match" do
     [ {},          {:a => 1},  "-keys: [:a]" ],
     [ { :a => 1},  {:a => 0},  ".[:a]: expect 1 to 0" ],
   ].each do |actual, expected, failure_message|
-    it "not match #{actual} with #{expected} and return #{failure_message.inspect} as failure_message" do
+    it "not match #{actual.inspect} with #{expected} and return #{failure_message.inspect} as failure_message" do
       begin
         actual.should wildcard_match(expected)
         fail # if matched come here and must fail

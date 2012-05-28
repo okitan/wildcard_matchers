@@ -1,4 +1,9 @@
 require "rspec"
+require "wildcard_matchers"
+
+RSpec.configure do |c|
+  c.include WildcardMatchers
+end
 
 RSpec::Matchers.define :wildcard_match do |expected|
   match do |actual|

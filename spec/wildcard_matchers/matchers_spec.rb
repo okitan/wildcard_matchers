@@ -40,6 +40,8 @@ describe WildcardMatchers::Matchers do
   [ [ { :a => 1, :b => 1, :c => 1 }, :hash_includes, :a, :b ],
     [ { :a => 1, :b => 1, :c => 1 }, :hash_includes, :a, :b => 1 ],
     [ { :a => 1, :b => 1, :c => 1 }, :hash_includes, :a, :b => Integer ],
+    [ "a", :is_a_member_of, %w[ a b ] ],
+    [ "a", :is_a_member_of, [ String ] ],
   ].each do |actual, matcher, *args|
     it_should_behave_like "wildcard match", actual, matcher, *args
   end
@@ -47,6 +49,8 @@ describe WildcardMatchers::Matchers do
   [ [ { :a => 1, :b => 1, :c => 1 }, :hash_includes, :a, :d ],
     [ { :a => 1, :b => 1, :c => 1 }, :hash_includes, :a, :b => 2 ],
     [ { :a => 1, :b => 1, :c => 1 }, :hash_includes, :a, :b => String ],
+    [ "a", :is_a_member_of, %w[ b c ] ],
+    [ "a", :is_a_member_of, [ Integer ] ],
   ].each do |actual, matcher, *args|
     it_should_behave_like "not wildcard match", actual, matcher, *args
   end
