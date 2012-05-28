@@ -36,6 +36,13 @@ See specs, for more detail.
 * is_a_member_of
  * is_a_member_of(0, 1) === 0 #=> true
 
+### helpers
+* nil_or
+ * nil_or(is_a_string) === nil #=> true
+ * nil_or(is_a_string) === "a" #=> true
+* all
+ * all(is_a_string) === %w[ a b c ] #=> true
+
 ## How it works
 
 It is very simple. Recursive match using ===, and Class, Range, and Proc act as wildcard matchers.
