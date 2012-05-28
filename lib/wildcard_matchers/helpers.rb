@@ -1,21 +1,18 @@
 module WildcardMatchers
   module Helpers
-    def nil_or(expected = nil, &block)
-      raise "expected or block is mandatory" unless expected or block_given?
-
-      expected ||= block
+    def nil_or(expected, &on_failure)
       lambda do |actual|
-        nil === actual or wildcard_match?(actual, expected)
+        nil === actual or wildcard_match?(actual, expected, &on_failure)
       end
     end
 
-    def is_all(expected = nil, &block)
+    def all(expected = nil, &on_failure)
       raise "expected or block is mandatory" unless expected or block_given?
 
       expected ||= block
       lambda do |actual|
         actual.all? do |item|
-          expected === item
+          wildcard_match(item, expected, &on_failure)
         end
       end
     end

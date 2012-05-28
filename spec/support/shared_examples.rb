@@ -32,7 +32,7 @@ shared_examples_for "wildcard match with helper" do |actual, helper, matcher, *a
                   end
 
   expected = helper.to_s + "(" + (args.size > 0 ?
-                                   "(#{matcher_string}(#{args.map(&:inpect).join(",")})" :
+                                   "(#{matcher_string}(#{args.map(&:inspect).join(",")})" :
                                     matcher_string) + ")"
 
   it "#{actual.inspect} with #{expected}" do
