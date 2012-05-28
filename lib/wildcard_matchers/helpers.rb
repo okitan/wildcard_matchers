@@ -9,8 +9,15 @@ module WildcardMatchers
       end
     end
 
-    def with_array(&block)
+    def is_all(expected = nil, &block)
+      raise "expected or block is mandatory" unless expected or block_given?
 
+      expected ||= block
+      lambda do |actual|
+        actual.all? do |item|
+          expected === item
+        end
+      end
     end
   end
 end

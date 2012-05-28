@@ -25,9 +25,15 @@ shared_examples_for "not wildcard match" do |actual, matcher, *args|
 end
 
 shared_examples_for "wildcard match with helper" do |actual, helper, matcher, *args|
-  expected = helper.inspect + (args.size > 0 ?
-                                "(#{matcher.inspect}(#{args.map(&:inpect).join(",")})" :
-                                matcher.inspect)
+  matcher_string =if matcher.is_a?(Symbol) and WildcardMatchers.respond_to?(matcher)
+                    matcher.to_s
+                  else
+                    matcher.inspect
+                  end
+
+  expected = helper.to_s + "(" + (args.size > 0 ?
+                                   "(#{matcher_string}(#{args.map(&:inpect).join(",")})" :
+                                    matcher_string) + ")"
 
   it "#{actual.inspect} with #{expected}" do
     if matcher.is_a?(Symbol) and WildcardMatchers.respond_to?(matcher)
