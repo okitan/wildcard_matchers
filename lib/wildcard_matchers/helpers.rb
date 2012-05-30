@@ -6,13 +6,13 @@ module WildcardMatchers
       end
     end
 
-    def all(expected = nil, &on_failure)
+    def for_all(expected = nil, &on_failure)
       raise "expected or block is mandatory" unless expected or block_given?
 
       expected ||= block
       lambda do |actual|
         actual.all? do |item|
-          wildcard_match(item, expected, &on_failure)
+          wildcard_match?(item, expected, &on_failure)
         end
       end
     end
