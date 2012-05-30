@@ -40,8 +40,8 @@ See specs, for more detail.
 * nil_or
  * nil_or(is_a_string) === nil #=> true
  * nil_or(is_a_string) === "a" #=> true
-* all
- * all(is_a_string) === %w[ a b c ] #=> true
+* for_all
+ * for_all(is_a_string) === %w[ a b c ] #=> true
 
 ## How it works
 
