@@ -7,15 +7,11 @@ end
 
 RSpec::Matchers.define :wildcard_match do |expected|
   match do |actual|
-    WildcardMatchers.wildcard_match?(actual, expected)
+    @matcher = WildcardMatchers::WildcardMatcher.new(expected)
+    @matcher === actual
   end
 
   failure_message_for_should do |actual|
-    failures = [ default_failure_message_for_should ]
-    on_failure = proc {|message| failures << message }
-
-    WildcardMatchers.wildcard_match?(actual, expected, &on_failure)
-
-    failures.join("\n")
+    @matcher.errors.join("\n")
   end
 end

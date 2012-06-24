@@ -80,21 +80,20 @@ describe target do
       expected = false
 
       failure = nil
-      wildcard_match?(actual, expected) {|message| failure = message }
-      failure.should =~ /#{actual.inspect} .+ #{expected.inspect}/
+      wildcard_match?(actual, expected) {|errors| failure = errors }
+      failure.should wildcard_match([/#{actual.inspect} .+ #{expected.inspect}/])
     end
 
     it "can get several failure messages" do
       actual   = [ 1, 0, 2 ]
       expected = [ 3, 0, 4 ]
 
-      failures = []
-      wildcard_match?(actual, expected) {|message| failures << message }
+      failure = nil
+      wildcard_match?(actual, expected) {|errors| failure = errors }
 
-      # TODO: dog fooding of rspec-matcher
       expect_failures = [ /#{actual.first}.+#{expected.first}/,
                           /#{actual.last}.+#{expected.last}/ ]
-      wildcard_match?(failures, expect_failures, &$debug).should be_true
+      failure.should wildcard_match(expect_failures)
     end
 
     # TODO: more failure message

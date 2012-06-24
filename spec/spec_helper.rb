@@ -5,6 +5,7 @@ require "wildcard_matchers/rspec"
 Dir[File.expand_path("support/**/*.rb", File.dirname(__FILE__))].each {|f| require f }
 
 require "pry"
+require "tapp"
 
 RSpec.configure do |config|
   config.treat_symbols_as_metadata_keys_with_true_values = true
@@ -14,4 +15,4 @@ end
 # global debug function
 # usage:
 #   wildcard_match?(actual, expected, &$debug)
-$debug = proc {|message| puts message }
+$debug = proc {|errors| puts errors }
