@@ -8,7 +8,7 @@ describe WildcardMatchers::Matchers do
     [ { :some => :hash },  Hash  ],
     [ [ 1, 2, 3 ],         Array ],
   ].each do |actual, expected|
-    it_should_behave_like "wildcard match", actual, :is_a, expected
+    it_behaves_like "wildcard match", actual, :is_a, expected
   end
 
   [ [ "string",           :is_a_string ],
@@ -27,23 +27,23 @@ describe WildcardMatchers::Matchers do
     [ "2012-05-10",  :is_time ],
 
   ].each do |actual, matcher|
-    it_should_behave_like "wildcard match", actual, matcher
+    it_behaves_like "wildcard match", actual, matcher
   end
 
   [ [ 0, :is_bool ],
   ].each do |actual, matcher|
-    it_should_behave_like "not wildcard match", actual, matcher
+    it_behaves_like "not wildcard match", actual, matcher
   end
 
   [ [ "a", :is_a_member_of, %w[ a b ] ],
     [ "a", :is_a_member_of, [ String ] ],
   ].each do |actual, matcher, *args|
-    it_should_behave_like "wildcard match", actual, matcher, *args
+    it_behaves_like "wildcard match", actual, matcher, *args
   end
 
   [ [ "a", :is_a_member_of, %w[ b c ] ],
     [ "a", :is_a_member_of, [ Integer ] ],
   ].each do |actual, matcher, *args|
-    it_should_behave_like "not wildcard match", actual, matcher, *args
+    it_behaves_like "not wildcard match", actual, matcher, *args
   end
 end

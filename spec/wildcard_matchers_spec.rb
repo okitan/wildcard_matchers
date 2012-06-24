@@ -15,20 +15,20 @@ describe target do
       [ { :some => :hash },  Hash  ],
       [ [ 1, 2, 3 ],         Array ],
     ].each do |actual, expected|
-      it_should_behave_like "wildcard match", actual, expected
+      it_behaves_like "wildcard match", actual, expected
     end
 
     [ [ {}, [] ],
       [ [], {} ],
     ].each do |actual, expected|
-      it_should_behave_like "not wildcard match", actual, expected
+      it_behaves_like "not wildcard match", actual, expected
     end
 
     context "matches recursively in Array" do
       [ [ [ 1, 2, "3"],    [ Integer, Integer, String ] ],
         [ [ 1, 2, [ 1 ] ], [ Integer, Integer, [ Integer ] ] ],
       ].each do |actual, expected|
-        it_should_behave_like "wildcard match", actual, expected
+        it_behaves_like "wildcard match", actual, expected
       end
     end
 
@@ -37,7 +37,7 @@ describe target do
         [ [ 1, 2, 3 ],    [ Integer, String,  Integer ] ],
         [ [ 1, 2, [ 1 ] ], [ Integer, Integer, [ String ] ] ],
       ].each do |actual, expected|
-        it_should_behave_like "not wildcard match", actual, expected
+        it_behaves_like "not wildcard match", actual, expected
       end
     end
 
@@ -45,7 +45,7 @@ describe target do
       [ [ { :hoge => "fuga", :fuga => "ugu" }, { :hoge => String, :fuga => String } ],
         [ { :hoge => "fuga", :fuga => { :ugu => "piyo" } }, { :hoge => String, :fuga => { :ugu => String } } ],
       ].each do |actual, expected|
-        it_should_behave_like "wildcard match", actual, expected
+        it_behaves_like "wildcard match", actual, expected
       end
     end
 
@@ -56,7 +56,7 @@ describe target do
         [ { :hoge => "fuga", :fuga => { :ugu => "piyo" } }, { :hoge => String, :fuga => { :ugu => Integer } } ],
         [ { :hoge => "fuga", :fuga => { :ugu => "piyo" } }, { :hoge => String, :fuga => { :fuga => String } } ],
       ].each do |actual, expected|
-        it_should_behave_like "not wildcard match", actual, expected
+        it_behaves_like "not wildcard match", actual, expected
       end
     end
 
@@ -69,7 +69,7 @@ describe target do
           { :first => Integer, :second => [ Integer ], :third => { :one => Integer } }
         ]
       ].each do |actual, expected|
-        it_should_behave_like "wildcard match", actual, expected
+        it_behaves_like "wildcard match", actual, expected
       end
     end
   end

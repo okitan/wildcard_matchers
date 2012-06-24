@@ -5,7 +5,7 @@ describe WildcardMatchers::Helpers::ForAll do
     [ %w[ a b c ], :for_all, :is_a_string ],
     [ %w[ a b c ], :for_all, :is_a, String ],
   ].each do |actual, helper, matcher, *args|
-    it_should_behave_like "wildcard match with helper", actual, helper, matcher, *args
+    it_behaves_like "wildcard match with helper", actual, helper, matcher, *args
   end
 
   it "should match using lambda with helper" do
