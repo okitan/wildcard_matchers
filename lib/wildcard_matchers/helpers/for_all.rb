@@ -1,6 +1,6 @@
 module WildcardMatchers
   module Helpers
-    def for_all(expectation, &block)
+    def for_all(expectation = nil, &block)
       expectation = block_given? ? block : expectation
 
       ForAll.new(expectation)

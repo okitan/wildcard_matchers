@@ -1,6 +1,6 @@
 module WildcardMatchers
   module Helpers
-    def nil_or(expectation, &block)
+    def nil_or(expectation = nil, &block)
       expectation = block_given? ? block : expectation
 
       NilOr.new(expectation)
