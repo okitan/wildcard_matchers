@@ -31,4 +31,5 @@ module WildcardMatchers
   end
 end
 
-require "wildcard_matchers/matchers/hash_includes.rb"
+require "wildcard_matchers/matchers/hash_includes"
+require "wildcard_matchers/matchers/is_uri"
