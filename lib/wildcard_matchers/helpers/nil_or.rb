@@ -1,10 +1,6 @@
 module WildcardMatchers
   module Helpers
-    def nil_or(expectation = nil, &block)
-      expectation = block_given? ? block : expectation
-
-      NilOr.new(expectation)
-    end
+    define_wildcard_helper(:nil_or)
 
     class NilOr < ::WildcardMatchers::WildcardMatcher
       protected

@@ -1,10 +1,6 @@
 module WildcardMatchers
   module Helpers
-    def for_any(expectation = nil, &block)
-      expectation = block_given? ? block : expectation
-
-      ForAny.new(expectation)
-    end
+    define_wildcard_helper(:for_any)
 
     class ForAny < ::WildcardMatchers::WildcardMatcher
       protected

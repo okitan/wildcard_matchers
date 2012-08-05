@@ -1,5 +1,14 @@
-module WildcardMathcers
+module WildcardMatchers
   module Helpers
+    class << self
+      def define_wildcard_helper(name)
+        define_method(name) do |expectation = nil, &block|
+          expectation = block_given? ? block : expectation
+
+          ::WildcardMatchers::Helpers.const_get(name.to_s.camelcase(:upper)).new(expectation)
+        end
+      end
+    end
   end
 end
 
