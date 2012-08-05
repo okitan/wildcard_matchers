@@ -14,11 +14,13 @@ Gem::Specification.new do |gem|
 
   gem.version       = File.read(File.join(File.dirname(__FILE__), "VERSION")).chomp
 
+  gem.add_dependency "facets"
+
   gem.add_development_dependency "rake"
   gem.add_development_dependency "rspec"
   gem.add_development_dependency "autowatchr"
 
-  # your choic
+  # your choice
   gem.add_development_dependency "addressable"
 
   # for debug

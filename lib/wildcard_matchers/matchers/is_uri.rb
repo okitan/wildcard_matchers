@@ -12,16 +12,12 @@ module WildcardMatchers
           require "addressable/uri"
           uri = ::Addressable::URI.parse(actual) # if actual is ::URI re-parse
         rescue LoadError
-          require "uri"
-          uri = actual.is_a?(URI) ? actual : ::URI.parse(actual)
+          require "uri".tapp
+          uri = actual.is_a?(::URI) ? actual : ::URI.parse(actual)
         end
 
-        begin
-          expectation.each do |key, value|
-            errors.push(*self.class.superclass.check_errors(uri.__send__(key), value, position + "[#key.inspect}]"))
-          end
-        rescue ::URI::Error
-          errors.push("#{position}: expect #{actual} to be parsed as uri")
+        expectation.each do |key, value|
+          errors.push(*self.class.superclass.check_errors(uri.__send__(key), value, position + "[#key.inspect}]"))
         end
       end
     end

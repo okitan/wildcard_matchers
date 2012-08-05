@@ -1,9 +1,7 @@
 module WildcardMatchers
   module Matchers
     # RSpeck::Mocks has hash_including
-    def hash_includes(*args)
-      HashIncludes.new(args)
-    end
+    define_wildcard_matcher(:hash_includes)
 
     class HashIncludes < ::WildcardMatchers::WildcardMatcher
       protected
