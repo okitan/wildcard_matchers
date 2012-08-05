@@ -1,3 +1,8 @@
+## 0.1.1
+* ENHANCEMENT
+ * for_any helper
+ * is_url matcher
+
 ## 0.1.0
 * big refactoring
 

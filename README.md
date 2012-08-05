@@ -28,6 +28,8 @@ See specs, for more detail.
  * is_bool === object #=> false
 * is_time
  * is_time === "2012-05-13" #=> true
+* is_url
+ * is_url(:host => "example.com") === "http://example.com" #=> true
 * hash_includes
  * hash_includes(:a) === { :a => 1 } #=> true
  * hash_includes(:b) === { :a => 1 } #=> false
@@ -42,6 +44,8 @@ See specs, for more detail.
  * nil_or(is_a_string) === "a" #=> true
 * for_all
  * for_all(is_a_string) === %w[ a b c ] #=> true
+* for_any
+ * for_any(is_a_string) === [ 1, "1" ] #=> true
 
 ## How it works
 
