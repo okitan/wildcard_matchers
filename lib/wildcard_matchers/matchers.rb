@@ -1,4 +1,4 @@
-require "facets"
+require "facets/string/camelcase"
 
 module WildcardMatchers
   module Matchers
