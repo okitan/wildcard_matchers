@@ -7,7 +7,7 @@ module WildcardMatchers
       protected
       def wildcard_match(actual)
         unless actual.is_a?(Hash)
-          erros.push "#{position}: expect #{actual} to Hash"
+          errors.push "#{position}: expect #{actual} to Hash"
         end
 
         hash_to_match = {}

@@ -17,7 +17,7 @@ module WildcardMatchers
         end
 
         expectation.each do |key, value|
-          errors.push(*self.class.superclass.check_errors(uri.__send__(key), value, position + "[#key.inspect}]"))
+          errors.push(*self.class.superclass.check_errors(uri.__send__(key), value, position + "[#{key.inspect}]"))
         end
       end
     end
