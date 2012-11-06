@@ -1,3 +1,6 @@
+## 0.1.2
+* minor bug fix and refactoring
+
 ## 0.1.1
 * ENHANCEMENT
  * for_any helper
