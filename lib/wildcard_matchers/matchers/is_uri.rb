@@ -12,7 +12,7 @@ module WildcardMatchers
           require "addressable/uri"
           uri = ::Addressable::URI.parse(actual) # if actual is ::URI re-parse
         rescue LoadError
-          require "uri".tapp
+          require "uri"
           uri = actual.is_a?(::URI) ? actual : ::URI.parse(actual)
         end
 
