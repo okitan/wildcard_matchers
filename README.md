@@ -1,4 +1,4 @@
-# wildcard_matchers [![Build Status](https://secure.travis-ci.org/okitan/wildcard_matchers.png?branch=master)](http://travis-ci.org/okitan/wildcard_matchers) [![Dependency Status](https://gemnasium.com/okitan/capybara-json.png)](https://gemnasium.com/okitan/capybara-json)
+# wildcard_matchers [![Build Status](https://secure.travis-ci.org/okitan/wildcard_matchers.png?branch=master)](http://travis-ci.org/okitan/wildcard_matchers) [![Dependency Status](https://gemnasium.com/okitan/wildcard_matchers.png)](https://gemnasium.com/okitan/wildcard_matchers)
 
 ## General Usage
 
