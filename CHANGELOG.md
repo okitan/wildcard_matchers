@@ -1,3 +1,6 @@
+## 0.1.3
+* more error handling
+
 ## 0.1.2
 * minor bug fix and refactoring
 
