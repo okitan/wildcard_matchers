@@ -6,8 +6,9 @@ module WildcardMatchers
     class HashIncludes < ::WildcardMatchers::WildcardMatcher
       protected
       def wildcard_match(actual)
-        unless actual.is_a?(Hash)
-          errors.push "#{position}: expect #{actual} to Hash"
+        unless actual && actual.is_a?(Hash)
+          errors.push "#{position}: expect #{actual.inspect} to Hash"
+          return
         end
 
         hash_to_match = {}

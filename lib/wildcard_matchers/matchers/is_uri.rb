@@ -7,6 +7,11 @@ module WildcardMatchers
     class IsUri < ::WildcardMatchers::WildcardMatcher
       protected
       def wildcard_match(actual)
+        unless actual
+          errors.push "#{position}: expect uri but nil"
+          return
+        end
+
         uri = nil
         begin
           require "addressable/uri"

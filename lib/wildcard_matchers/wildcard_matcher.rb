@@ -10,7 +10,7 @@ module WildcardMatchers
 
     def ===(actual)
       @errors = []
-      wildcard_match(actual)
+      wildcard_match_with_catch_exception(actual)
       errors.empty?
     end
 
@@ -22,6 +22,13 @@ module WildcardMatchers
     end
 
     protected
+    # I'd like to use prepend
+    def wildcard_match_with_catch_exception(actual)
+      wildcard_match(actual)
+    rescue => e
+      errors.push "#{position}: <#{e.inspect}:#{e.message}> for expect #{actual.inspect} to #{expectation.inspect}"
+    end
+
     def wildcard_match(actual)
       case expectation
       when self.class
@@ -53,7 +60,7 @@ module WildcardMatchers
   class ArrayMatcher < WildcardMatcher
     protected
     def wildcard_match(actual)
-      unless actual.is_a?(Array)
+      unless actual and actual.is_a?(Array)
         errors << "#{position}: expect #{actual.inspect} to #{expectation.inspect}"
         return
       end
@@ -72,7 +79,7 @@ module WildcardMatchers
   class HashMatcher < WildcardMatcher
     protected
     def wildcard_match(actual)
-      unless actual.is_a?(Hash)
+      unless actual and actual.is_a?(Hash)
         errors << "#{position}: expect #{actual.inspect} to #{expectation.inspect}"
         return
       end
