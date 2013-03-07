@@ -1,3 +1,7 @@
+## 0.1.4
+* ENHANCEMENT
+ * with_uri_template matcher
+
 ## 0.1.3
 * more error handling
 
