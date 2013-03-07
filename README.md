@@ -30,6 +30,9 @@ See specs, for more detail.
  * is_time === "2012-05-13" #=> true
 * is_url
  * is_url(:host => "example.com") === "http://example.com" #=> true
+* with_uri_template
+ * with_uri_template("http://example.com/users/{id}", "id" => "1") === "http://example.com/users/1" #=> true
+ * with_uri_template("http://example.com/users{?id}", "id" => "1") === "http://example.com/users?id=1" #=> true
 * hash_includes
  * hash_includes(:a) === { :a => 1 } #=> true
  * hash_includes(:b) === { :a => 1 } #=> false
