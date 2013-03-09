@@ -15,4 +15,6 @@ end
 # global debug function
 # usage:
 #   wildcard_match?(actual, expected, &$debug)
-$debug = proc {|errors| puts errors }
+def debugger
+  ENV["DEBUG"] ? proc {|errors| puts errors } : nil
+end

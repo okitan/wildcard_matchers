@@ -1,3 +1,5 @@
+require "addressable/uri"
+
 module WildcardMatchers
   module Matchers
     def is_uri(hash = {})
@@ -8,18 +10,10 @@ module WildcardMatchers
       protected
       def wildcard_match(actual)
         unless actual
-          errors.push "#{position}: expect uri but nil"
-          return
+          return errors.push "#{position}: expect URI but nil"
         end
 
-        uri = nil
-        begin
-          require "addressable/uri"
-          uri = ::Addressable::URI.parse(actual) # if actual is ::URI re-parse
-        rescue LoadError
-          require "uri"
-          uri = actual.is_a?(::URI) ? actual : ::URI.parse(actual)
-        end
+        uri = ::Addressable::URI.parse(actual) # if actual is ::URI re-parse
 
         expectation.each do |key, value|
           errors.push(*self.class.superclass.check_errors(uri.__send__(key), value, position + "[#{key.inspect}]"))
