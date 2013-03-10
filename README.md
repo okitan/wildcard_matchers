@@ -33,6 +33,8 @@ See specs, for more detail.
 * with_uri_template
  * with_uri_template("http://example.com/users/{id}", "id" => "1") === "http://example.com/users/1" #=> true
  * with_uri_template("http://example.com/users{?id}", "id" => "1") === "http://example.com/users?id=1" #=> true
+* with_uri_template and witout_query!
+ * with_uri_template("http://example.com/users", "id" => "1").without_query! === "http://example.com/users?id=1" #=> true
 * hash_includes
  * hash_includes(:a) === { :a => 1 } #=> true
  * hash_includes(:b) === { :a => 1 } #=> false

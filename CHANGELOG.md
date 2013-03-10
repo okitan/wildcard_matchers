@@ -1,3 +1,7 @@
+## 0.1.5
+* ENHANCEMENT
+ * add without_query! modifier to with_uri_template matcher
+
 ## 0.1.4
 * ENHANCEMENT
  * with_uri_template matcher
