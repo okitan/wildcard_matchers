@@ -24,4 +24,7 @@ Gem::Specification.new do |gem|
   # for debug
   gem.add_development_dependency "pry"
   gem.add_development_dependency "tapp"
+
+  # ci
+  gem.add_development_dependency "coveralls"
 end
