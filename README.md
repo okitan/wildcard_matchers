@@ -1,4 +1,4 @@
-# wildcard_matchers [![Build Status](https://secure.travis-ci.org/okitan/wildcard_matchers.png?branch=master)](http://travis-ci.org/okitan/wildcard_matchers) [![Dependency Status](https://gemnasium.com/okitan/wildcard_matchers.png)](https://gemnasium.com/okitan/wildcard_matchers)
+# wildcard_matchers [![Build Status](https://secure.travis-ci.org/okitan/wildcard_matchers.png?branch=master)](http://travis-ci.org/okitan/wildcard_matchers) [![Dependency Status](https://gemnasium.com/okitan/wildcard_matchers.png)](https://gemnasium.com/okitan/wildcard_matchers) [![Coverage Status](https://coveralls.io/repos/okitan/wildcard_matchers/badge.png?branch=master)](https://coveralls.io/r/okitan/wildcard_matchers)
 
 ## General Usage
 
@@ -51,6 +51,8 @@ See specs, for more detail.
  * for_all(is_a_string) === %w[ a b c ] #=> true
 * for_any
  * for_any(is_a_string) === [ 1, "1" ] #=> true
+* responding
+ * responding(next: 2) === 1 #=> true (because 1.next #=> 2)
 
 ## How it works
 

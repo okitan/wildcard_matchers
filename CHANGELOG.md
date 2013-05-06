@@ -1,3 +1,9 @@
+## 0.1.6
+* ENHANCEMENT
+ * add reponding helper to check object attribute with hash
+* CHANGE
+ * allow wildcard_matcher to use recursively with rspec
+
 ## 0.1.5
 * ENHANCEMENT
  * add without_query! modifier to with_uri_template matcher
