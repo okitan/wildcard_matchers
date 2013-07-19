@@ -46,7 +46,7 @@ module WildcardMatchers
       when Hash
         errors.push(*HashMatcher.check_errors(actual, expectation, position))
       else
-        if defined?(:"::RSpec::Matchers::DSL::Matcher") \
+        if defined?(::RSpec::Matchers::DSL::Matcher) \
             && ::RSpec::Matchers::DSL::Matcher === expectation \
             && (expected = expectation.expected.first).is_a?(self.class)
           # if duplicated wildcard_match extract it
