@@ -1,3 +1,8 @@
+## 0.1.7
+* FIX
+ * bug of hash_includes corrupts expectation
+ * bug of using without rspec
+
 ## 0.1.6
 * ENHANCEMENT
  * add reponding helper to check object attribute with hash
