@@ -28,8 +28,8 @@ See specs, for more detail.
  * is_bool === object #=> false
 * is_time
  * is_time === "2012-05-13" #=> true
-* is_url
- * is_url(:host => "example.com") === "http://example.com" #=> true
+* is_uri
+ * is_uri(:host => "example.com") === "http://example.com" #=> true
 * with_uri_template
  * with_uri_template("http://example.com/users/{id}", "id" => "1") === "http://example.com/users/1" #=> true
  * with_uri_template("http://example.com/users{?id}", "id" => "1") === "http://example.com/users?id=1" #=> true
