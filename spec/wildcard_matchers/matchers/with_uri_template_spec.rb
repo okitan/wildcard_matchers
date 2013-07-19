@@ -26,7 +26,7 @@ describe WildcardMatchers::Matchers::WithUriTemplate do
     it_behaves_like "not wildcard match", actual, matcher, *args
   end
 
-  context "with without_query!", :focused do
+  context "with without_query!" do
     it "works" do
       wildcard_match?(
         "http://example.com/?hoge=fuga&fuga=ugu",

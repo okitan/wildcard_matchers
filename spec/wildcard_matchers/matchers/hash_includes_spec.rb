@@ -14,4 +14,10 @@ describe WildcardMatchers::Matchers::HashIncludes do
   ].each do |actual, matcher, *args|
     it_behaves_like "not wildcard match", actual, matcher, *args
   end
+
+  # bug
+  it "cannot be corrupted" do
+    matcher = hash_includes(a: 1)
+    2.times { wildcard_match?({ a: 2 }, matcher, &debugger).should be_false }
+  end
 end

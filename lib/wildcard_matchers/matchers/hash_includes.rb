@@ -11,15 +11,14 @@ module WildcardMatchers
           return
         end
 
-        hash_to_match = {}
-        hash_to_match = expectation.pop if expectation.last.is_a?(Hash)
-
         expectation.each do |key|
-          errors << "#{position}: expect #{actual} to have key #{key}" unless actual.has_key?(key)
-        end
-
-        hash_to_match.each do |key, value|
-          errors.push(*self.class.superclass.check_errors(actual[key], value, position + "[#{key.inspect}]"))
+          unless key.is_a?(Hash)
+            errors << "#{position}: expect #{actual} to have key #{key}" unless actual.has_key?(key)
+          else
+            key.each do |key, value|
+              errors.push(*self.class.superclass.check_errors(actual[key], value, position + "[#{key.inspect}]"))
+            end
+          end
         end
       end
     end
