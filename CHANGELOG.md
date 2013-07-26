@@ -1,3 +1,7 @@
+## 0.1.8
+* ENHANCEMENT
+ * wildcard_match have capablity to use block
+
 ## 0.1.7
 * FIX
  * bug of hash_includes corrupts expectation
