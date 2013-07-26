@@ -8,6 +8,13 @@ describe "matcher wildcard_match" do
     end
   end
 
+  [ [ 1, ->(e) { e == 1 } ],
+  ].each do |actual, expected|
+    it "match #{actual.inspect} with #{expected} block" do
+      actual.should wildcard_match(&expected)
+    end
+  end
+
   [ [ "1", :is_a_string ],
   ].each do |actual, expected|
     it "match #{actual.inspect} with #{expected}" do

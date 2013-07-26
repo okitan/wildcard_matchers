@@ -15,3 +15,10 @@ RSpec::Matchers.define :wildcard_match do |expected|
     @matcher.errors.join("\n")
   end
 end
+
+module RSpec::Matchers
+  alias wildcard_match_without_block wildcard_match
+  def wildcard_match(expected = nil, &block)
+    wildcard_match_without_block((block_given? ? block : expected))
+  end
+end
