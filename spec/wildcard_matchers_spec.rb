@@ -81,7 +81,7 @@ describe target do
 
       failure = nil
       wildcard_match?(actual, expected) {|errors| failure = errors }
-      failure.should wildcard_match([/#{actual.inspect} .+ #{expected.inspect}/])
+      expect(failure).to wildcard_match([/#{actual.inspect} .+ #{expected.inspect}/])
     end
 
     it "can get several failure messages" do
@@ -93,7 +93,7 @@ describe target do
 
       expect_failures = [ /#{actual.first}.+#{expected.first}/,
                           /#{actual.last}.+#{expected.last}/ ]
-      failure.should wildcard_match(expect_failures)
+      expect(failure).to wildcard_match(expect_failures)
     end
 
     # TODO: more failure message

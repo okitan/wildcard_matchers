@@ -28,19 +28,19 @@ describe WildcardMatchers::Matchers::WithUriTemplate do
 
   context "with without_query!" do
     it "works" do
-      wildcard_match?(
+      expect(wildcard_match?(
         "http://example.com/?hoge=fuga&fuga=ugu",
         with_uri_template("http://example.com/{?hoge}", hash_includes("hoge" => "fuga")).without_query!,
         &debugger
-      ).should be_true
+      )).to be true
     end
 
     it "works" do
-      wildcard_match?(
+      expect(wildcard_match?(
         "http://example.com/ugu?hoge=fuga&fuga=ugu",
         with_uri_template("http://example.com/{piyo}{?hoge}", hash_includes("hoge" => "fuga", "piyo" => "ugu")).without_query!,
         &debugger
-      ).should be_true
+      )).to be true
     end
   end
 end

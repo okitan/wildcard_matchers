@@ -4,21 +4,21 @@ describe "matcher wildcard_match" do
   [ [ 1, Integer ],
   ].each do |actual, expected|
     it "match #{actual.inspect} with #{expected}" do
-      actual.should wildcard_match(expected)
+      expect(actual).to wildcard_match(expected)
     end
   end
 
   [ [ 1, ->(e) { e == 1 } ],
   ].each do |actual, expected|
     it "match #{actual.inspect} with #{expected} block" do
-      actual.should wildcard_match(&expected)
+      expect(actual).to wildcard_match(&expected)
     end
   end
 
   [ [ "1", :is_a_string ],
   ].each do |actual, expected|
     it "match #{actual.inspect} with #{expected}" do
-      actual.should wildcard_match(send(expected))
+      expect(actual).to wildcard_match(send(expected))
     end
   end
 
@@ -31,10 +31,10 @@ describe "matcher wildcard_match" do
   ].each do |actual, expected, failure_message|
     it "not match #{actual.inspect} with #{expected} and return #{failure_message.inspect} as failure_message" do
       begin
-        actual.should wildcard_match(expected)
+        expect(actual).to wildcard_match(expected)
         fail # if matched come here and must fail
-      rescue => e
-        e.message.should include(failure_message)
+      rescue RSpec::Expectations::ExpectationNotMetError => e
+        expect(e.message).to include(failure_message)
       end
     end
   end

@@ -8,6 +8,6 @@ describe WildcardMatchers::Helpers::ForAny do
   end
 
   it "should match using lambda with helper" do
-    [ 1, 2, 3 ].should wildcard_match(for_any ->(item) { item % 2 == 0 })
+    expect([ 1, 2, 3 ]).to wildcard_match(for_any ->(item) { item % 2 == 0 })
   end
 end

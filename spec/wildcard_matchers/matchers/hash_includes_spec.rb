@@ -18,6 +18,6 @@ describe WildcardMatchers::Matchers::HashIncludes do
   # bug
   it "cannot be corrupted" do
     matcher = hash_includes(a: 1)
-    2.times { wildcard_match?({ a: 2 }, matcher, &debugger).should be_false }
+    2.times { expect(wildcard_match?({ a: 2 }, matcher, &debugger)).to be false }
   end
 end

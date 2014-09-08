@@ -11,8 +11,15 @@ RSpec::Matchers.define :wildcard_match do |expected|
     @matcher === actual
   end
 
-  failure_message_for_should do |actual|
-    @matcher.errors.join("\n")
+  # RSpec now prefers `failure_message` instead of `failure_message_for_should`.
+  if respond_to? :failure_message
+    failure_message do |actual| # RSpec 3.x
+      @matcher.errors.join("\n")
+    end
+  else
+    failure_message_for_should do |actual| # RSpec 1.2, 2.x
+      @matcher.errors.join("\n")
+    end
   end
 end
 

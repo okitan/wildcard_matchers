@@ -4,9 +4,9 @@ shared_examples_for "wildcard match" do |actual, matcher, *args|
   it "#{actual.inspect} with #{expected}" do
     if matcher.is_a?(Symbol) and WildcardMatchers.respond_to?(matcher)
       # Note: some symbol comes here and may fail
-      wildcard_match?(actual, send(matcher, *args), &debugger).should be_true
+      expect(wildcard_match?(actual, send(matcher, *args), &debugger)).to be true
     else
-      wildcard_match?(actual, matcher, &debugger).should be_true
+      expect(wildcard_match?(actual, matcher, &debugger)).to be true
     end
   end
 end
@@ -17,9 +17,9 @@ shared_examples_for "not wildcard match" do |actual, matcher, *args|
   it "#{actual.inspect} with #{expected}" do
     if matcher.is_a?(Symbol) and WildcardMatchers.respond_to?(matcher)
       # Note: some symbol comes here and may fail
-      wildcard_match?(actual, send(matcher, *args), &debugger).should be_false
+      expect(wildcard_match?(actual, send(matcher, *args), &debugger)).to be false
     else
-      wildcard_match?(actual, matcher, &debugger).should be_false
+      expect(wildcard_match?(actual, matcher, &debugger)).to be false
     end
   end
 end
@@ -38,9 +38,9 @@ shared_examples_for "wildcard match with helper" do |actual, helper, matcher, *a
   it "#{actual.inspect} with #{expected}" do
     if matcher.is_a?(Symbol) and WildcardMatchers.respond_to?(matcher)
       # Note: some symbol comes here and may fail
-      wildcard_match?(actual, send(helper, send(matcher, *args)), &debugger).should be_true
+      expect(wildcard_match?(actual, send(helper, send(matcher, *args)), &debugger)).to be true
     else
-      wildcard_match?(actual, send(helper, matcher), &debugger).should be_true
+      expect(wildcard_match?(actual, send(helper, matcher), &debugger)).to be true
     end
   end
 end
