@@ -1,3 +1,7 @@
+## 0.2.0
+* Update
+ * wildcard_matchers now works on rspec3.x (@yuki-hirako)
+
 ## 0.1.8
 * ENHANCEMENT
  * wildcard_match have capablity to use block
