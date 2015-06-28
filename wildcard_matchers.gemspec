@@ -12,6 +12,8 @@ Gem::Specification.new do |gem|
   gem.name          = "wildcard_matchers"
   gem.require_paths = ["lib"]
 
+  gem.license = 'MIT'
+
   gem.version       = File.read(File.join(File.dirname(__FILE__), "VERSION")).chomp
 
   gem.add_dependency "facets"
