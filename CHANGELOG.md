@@ -1,3 +1,7 @@
+## 0.2.1
+* ENHANCEMENT
+* add bag_of like Test::Deep in perl
+
 ## 0.2.0
 * Update
  * wildcard_matchers now works on rspec3.x (@yuki-hirako)
