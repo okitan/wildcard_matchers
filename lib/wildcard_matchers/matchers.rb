@@ -58,6 +58,7 @@ module WildcardMatchers
   end
 end
 
+require "wildcard_matchers/matchers/bag"
 require "wildcard_matchers/matchers/hash_includes"
 require "wildcard_matchers/matchers/is_uri"
 require "wildcard_matchers/matchers/with_uri_template"
