@@ -1,3 +1,7 @@
+## 0.3.0
+* ENHANCEMENT
+* allow method object
+
 ## 0.2.1
 * ENHANCEMENT
 * add bag_of like Test::Deep in perl
