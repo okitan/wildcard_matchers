@@ -14,6 +14,8 @@ describe target do
       [ 0,                   Numeric ],  # superclass
       [ { :some => :hash },  Hash  ],
       [ [ 1, 2, 3 ],         Array ],
+      [ 1,                   ->(v) { [1,2,3].include?(v) } ],
+      [ 1,                   [1,2,3].method(:include?) ],
     ].each do |actual, expected|
       it_behaves_like "wildcard match", actual, expected
     end

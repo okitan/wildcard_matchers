@@ -41,6 +41,8 @@ module WildcardMatchers
       when Proc
         # TODO: use sexp
         single_match(actual)
+      when Method
+        errors.push(*MethodMatcher.check_errors(actual, expectation, position))
       when Array
         errors.push(*ArrayMatcher.check_errors(actual, expectation, position))
       when Hash
@@ -99,6 +101,17 @@ module WildcardMatchers
       else
         errors << "#{position}: expect Hash keys #{actual.keys} to #{expectation.keys}"
         #TODO: diff-lcs
+      end
+    end
+  end
+
+  class MethodMatcher < WildcardMatcher
+    protected
+    def wildcard_match(actual)
+      result = expectation.call(actual)
+
+      unless result
+        errors << "#{position}: expect #{expectation.receiver.inspect}.#{expectation.name} return true but #{result}"
       end
     end
   end
