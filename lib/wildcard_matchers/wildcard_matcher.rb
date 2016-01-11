@@ -99,8 +99,18 @@ module WildcardMatchers
           errors.push(*self.class.superclass.check_errors(actual[key], value, position + "[#{key.inspect}]"))
         end
       else
-        errors << "#{position}: expect Hash keys #{actual.keys} to #{expectation.keys}"
-        #TODO: diff-lcs
+        begin
+          actual_keys   = actual.keys.sort
+          expected_keys = expectation.keys.sort
+
+          extra = actual_keys   - expected_keys
+          short = expected_keys - actual_keys
+
+          errors << "#{position}: expect Hash keys #{actual_keys} to #{expected_keys}\n  extra: #{extra}\n  short: #{short}"
+        rescue
+          # when keys has more patterns than expacted
+          errors << "#{position}: expect Hash keys #{actual.keys} to #{expectation.keys}"
+        end
       end
     end
   end
