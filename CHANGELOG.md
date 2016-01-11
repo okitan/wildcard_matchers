@@ -1,3 +1,8 @@
+## 0.3.1
+
+* IMPROVEMENT
+ * improve error message when hash keys mismatch
+
 ## 0.3.0
 * ENHANCEMENT
 * allow method object
