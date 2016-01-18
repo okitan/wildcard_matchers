@@ -1,3 +1,7 @@
+## 0.4.0
+* ENHANCEMENT
+ * add any_of and all_of helper
+
 ## 0.3.1
 
 * IMPROVEMENT
