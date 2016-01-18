@@ -1,3 +1,7 @@
+## 0.9.0
+* ENHANCEMEN
+ * support & and | to composite matcher
+
 ## 0.4.0
 * ENHANCEMENT
  * add any_of and all_of helper
