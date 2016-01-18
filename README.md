@@ -49,6 +49,12 @@ See specs, for more detail.
 * nil_or
  * nil_or(is_a_string) === nil #=> true
  * nil_or(is_a_string) === "a" #=> true
+* any_of
+ * any_of(String, /b/)  === "a" #=> true
+ * any_of(Integer, /b/) === "a" #=> false
+* all_of
+ * all_of(String, /a/) === "a" #=> true
+ * all_of(String, /b/) === "a" #=> false
 * for_all
  * for_all(is_a_string) === %w[ a b c ] #=> true
 * for_any
