@@ -3,6 +3,11 @@ module WildcardMatchers
     define_wildcard_helper(:any_of)
 
     class AnyOf < ::WildcardMatchers::WildcardMatcher
+      def |(matcher)
+        expectation.push(matcher)
+        self
+      end
+
       protected
       def wildcard_match(actual)
         errors = expectation.map do |e|
