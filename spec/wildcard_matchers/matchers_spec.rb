@@ -46,4 +46,54 @@ describe WildcardMatchers::Matchers do
   ].each do |actual, matcher, *args|
     it_behaves_like "not wildcard match", actual, matcher, *args
   end
+
+  context "composing matchers" do
+    context "with &" do
+      include WildcardMatchers
+
+      it "works" do
+        matcher = responding(size: 2) & /a/ & /b/
+        expect(wildcard_match?("ab", matcher, &debugger)).to be true
+      end
+
+      it "shows every erro4" do
+        matcher = responding(size: 2) & /a/ & /b/
+        expect(wildcard_match?("c", matcher, &debugger)).to be false
+      end
+
+      it "returns error just one mismatch" do
+        matcher = responding(size: 1) & /a/ & /b/
+        expect(wildcard_match?("a", matcher, &debugger)).to be false
+      end
+
+      it "is also available for all_of" do
+        matcher = all_of([String, /a/]) & /b/
+        expect(wildcard_match?("a", matcher, &debugger)).to be false
+      end
+    end
+
+    context "with |" do
+      include WildcardMatchers
+
+      it "works" do
+        matcher = responding(size: 2) | /a/ | /b/
+        expect(wildcard_match?("a", matcher, &debugger)).to be true
+      end
+
+      it "shows every error" do
+        matcher = responding(size: 2) | /a/ | /b/
+        expect(wildcard_match?("c", matcher, &debugger)).to be false
+      end
+
+      it "is also available for any_of" do
+        matcher = any_of([Integer, /a/]) | /b/
+        expect(wildcard_match?("b", matcher, &debugger)).to be true
+      end
+
+      it "is also available for any_of" do
+        matcher = any_of([Integer, /b/]) | /a/
+        expect(wildcard_match?("b", matcher, &debugger)).to be true
+      end
+    end
+  end
 end

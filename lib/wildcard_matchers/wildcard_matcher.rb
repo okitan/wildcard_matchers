@@ -8,6 +8,14 @@ module WildcardMatchers
       @position    = position
     end
 
+    def &(matcher)
+      WildcardMatchers::Helpers::AllOf.new([self, matcher])
+    end
+
+    def |(matcher)
+      WildcardMatchers::Helpers::AnyOf.new([self, matcher])
+    end
+
     def ===(actual)
       @errors = []
       wildcard_match_with_catch_exception(actual)
