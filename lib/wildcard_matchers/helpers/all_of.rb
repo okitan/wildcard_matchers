@@ -1,16 +1,16 @@
 module WildcardMatchers
   module Helpers
-    define_wildcard_helper(:any_of)
+    define_wildcard_helper(:all_of)
 
-    class AnyOf < ::WildcardMatchers::WildcardMatcher
+    class AllOf < ::WildcardMatchers::WildcardMatcher
       protected
       def wildcard_match(actual)
         errors = expectation.map do |e|
           self.class.superclass.check_errors(actual, e)
-        end
+        end.flatten
 
-        unless errors.any? {|e| e == [] }
-          @errors = errors.flatten
+        unless errors.empty?
+          @errors = errors
         end
       end
     end
