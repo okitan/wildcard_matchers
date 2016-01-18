@@ -62,6 +62,13 @@ See specs, for more detail.
 * responding
  * responding(next: 2) === 1 #=> true (because 1.next #=> 2)
 
+### composite matchers
+
+* using &
+ * for_all(is_a_string) & for_any(/hoge/) # every element is String and one matched /hoge/
+* using |
+ * for_all(is_a_string) | for_all(is_a_integer) # every element is String or Integer
+
 ## How it works
 
 It is very simple. Recursive match using ===, and Class, Range, and Proc act as wildcard matchers.
