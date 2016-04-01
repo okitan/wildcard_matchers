@@ -1,3 +1,8 @@
+## 0.9.1
+
+* FIXED
+ * all_of and any_of pass positions to child matchers
+
 ## 0.9.0
 * ENHANCEMEN
  * support & and | to composite matcher
