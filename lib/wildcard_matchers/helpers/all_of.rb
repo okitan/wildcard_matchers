@@ -11,7 +11,7 @@ module WildcardMatchers
       protected
       def wildcard_match(actual)
         errors = expectation.map do |e|
-          self.class.superclass.check_errors(actual, e)
+          self.class.superclass.check_errors(actual, e, position)
         end.flatten
 
         unless errors.empty?
