@@ -11,6 +11,7 @@ describe WildcardMatchers::Matchers::HashIncludes do
   [ [ { :a => 1, :b => 1, :c => 1 }, :hash_includes, :a, :d ],
     [ { :a => 1, :b => 1, :c => 1 }, :hash_includes, :a, :b => 2 ],
     [ { :a => 1, :b => 1, :c => 1 }, :hash_includes, :a, :b => String ],
+    [ { :a => 1, :b => 1, :c => 1 }, :hash_includes, :a, :b => String, :d => nil ],
   ].each do |actual, matcher, *args|
     it_behaves_like "not wildcard match", actual, matcher, *args
   end

@@ -16,7 +16,11 @@ module WildcardMatchers
             errors << "#{position}: expect #{actual} to have key #{key}" unless actual.has_key?(key)
           else
             key.each do |key, value|
-              errors.push(*self.class.superclass.check_errors(actual[key], value, position + "[#{key.inspect}]"))
+              unless actual.has_key?(key)
+                errors << "#{position}: expect #{actual} to have key #{key}"
+              else
+                errors.push(*self.class.superclass.check_errors(actual[key], value, position + "[#{key.inspect}]"))
+              end
             end
           end
         end
