@@ -1,3 +1,8 @@
+## 0.9.2
+
+* FIXED
+ * hash_includes passes when key does not exist but key is nil
+
 ## 0.9.1
 
 * FIXED
