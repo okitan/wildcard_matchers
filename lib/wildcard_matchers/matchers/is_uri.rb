@@ -5,6 +5,7 @@ module WildcardMatchers
     def is_uri(hash = {})
       IsUri.new(hash)
     end
+    alias_method :be_uri, :is_uri
 
     class IsUri < ::WildcardMatchers::WildcardMatcher
       protected

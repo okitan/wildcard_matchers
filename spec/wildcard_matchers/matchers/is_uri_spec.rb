@@ -4,6 +4,7 @@ describe WildcardMatchers::Matchers::IsUri do
   [ [ "http://example.com", :is_uri ],
     [ "http://example.com", :is_uri, :scheme => "http", :host => "example.com" ],
     [ "http://example.com", :is_uri, :host => /example/ ],
+    [ "http://example.com", :be_uri ]
   ].each do |actual, matcher, *args|
     it_behaves_like "wildcard match", actual, matcher, *args
   end
